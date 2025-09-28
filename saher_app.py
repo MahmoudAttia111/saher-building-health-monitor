@@ -22,7 +22,7 @@ seconds = st.number_input("⏱ Seconds (0–3600)", min_value=0, max_value=3600,
 
 # معالجة البيانات
 # total_accel = np.sqrt(accel_x**2 + accel_y**2 + accel_z**2)
-input_data = np.array([[total_accel, strain, temp, seconds,accel_x,accel_y,accel_z]])
+input_data = np.array([[  strain, temp, seconds,accel_x,accel_y,accel_z]])
 
 # تطبيع البيانات
 scaler = MinMaxScaler()
