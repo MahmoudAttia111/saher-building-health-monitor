@@ -22,11 +22,19 @@ seconds = st.number_input("⏱ Seconds (0–3600)", min_value=0, max_value=3600,
 
 # معالجة البيانات
 # total_accel = np.sqrt(accel_x**2 + accel_y**2 + accel_z**2)
-input_data = np.array([[  strain, temp, seconds,accel_x,accel_y,accel_z]])
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
 
-# تطبيع البيانات
+# نفس ترتيب التدريب: [Accel_X, Accel_Y, Accel_Z, Strain, Temp, Seconds]
+input_data = np.array([[accel_x, accel_y, accel_z, strain, temp, seconds]])
+
+# نضبط الـ scaler على الحدود min/max من describe()
 scaler = MinMaxScaler()
-scaler.fit([[0,0,0,0], [50,5000,100,3600]])  # حدود تقريبية لكل عمود
+scaler.fit([
+    [-0.795, -0.882,  9.508,  41.860, 20.244, 0],     # min values
+    [ 1.338,  0.941, 10.203, 224.862, 29.839, 3600]   # max values
+])
+
 input_scaled = scaler.transform(input_data)
 
 # التنبؤ
