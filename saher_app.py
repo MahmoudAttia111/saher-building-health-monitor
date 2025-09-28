@@ -1,10 +1,9 @@
-# saher_app.py
+
 import streamlit as st
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
-
 
 model = load_model("saher_normal_data.h5")
 
@@ -13,20 +12,21 @@ st.set_page_config(page_title="Saher - Building Health Monitor", layout="centere
 st.title("🏢 ساهر - نظام ذكي لمراقبة المباني")
 st.markdown("هذا التطبيق يتنبأ بحالة المبنى (آمن / خطر / حرج) بناءً على بيانات المستشعرات.")
 
-
 accel_x = st.number_input("📈 Accelerometer X (m/s²)", value=0.0)
 accel_y = st.number_input("📉 Accelerometer Y (m/s²)", value=0.0)
 accel_z = st.number_input("📊 Accelerometer Z (m/s²)", value=0.0)
 strain = st.number_input("🧱 Strain (με)", value=0.0)
 temp = st.number_input("🌡 Temperature (°C)", value=25.0)
+seconds = st.number_input("⏱ Seconds (0–3600)", min_value=0, max_value=3600, value=0)
 
 
 total_accel = np.sqrt(accel_x**2 + accel_y**2 + accel_z**2)
-input_data = np.array([[total_accel, strain, temp]])
+# الترتيب مهم: [total_accel, strain, temp, seconds]
+input_data = np.array([[total_accel, strain, temp, seconds]])
+
 
 scaler = MinMaxScaler()
-
-scaler.fit([[0,0,0],[50,5000,100]])
+scaler.fit([[0,0,0,0], [50,5000,100,3600]])  # مثال: حددت حدود تقريبية لكل عمود
 input_scaled = scaler.transform(input_data)
 
 
