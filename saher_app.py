@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 
 
-model = load_model("saher1.h5")
+model = load_model("saher_normal_data.h5")
 
 st.set_page_config(page_title="Saher - Building Health Monitor", layout="centered")
 
