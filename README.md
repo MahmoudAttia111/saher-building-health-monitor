@@ -105,6 +105,8 @@ with open("scalers/scaler.pkl", "wb") as f:
     pickle.dump(scaler, f)
 
 ## 🌐 Deployment
+You can try the live app here:
+🔗  https://saher-building-health-monitor-6fx8hpvvkpuzni5sihzehu.streamlit.app/
 
 The app can be deployed on:
 
