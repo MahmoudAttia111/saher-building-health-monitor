@@ -24,6 +24,7 @@ The model classifies buildings into three categories:
 🚨 Critical (2)
 
 ## 📂 Project Structure
+```
 saher-building-health-monitor/
 │
 ├── saher_app.py # Streamlit application
@@ -43,6 +44,7 @@ saher-building-health-monitor/
 │ └── Saher_Training.ipynb # Jupyter notebook for training & analysis
 │
 └── README.md # Documentation
+```
 
 ## ⚙️ Setup & Run Locally
 
