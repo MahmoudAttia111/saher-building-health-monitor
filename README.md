@@ -26,23 +26,23 @@ The model classifies buildings into three categories:
 ## 📂 Project Structure
 saher-building-health-monitor/
 │
-├── saher_app.py                # Streamlit application
-├── requirements.txt             # Project dependencies
+├── saher_app.py # Streamlit application
+├── requirements.txt # Project dependencies
 │
-├── models/                      # Trained models
-│   ├── saher_model.pkl          # Scikit-learn model
-│   └── saher_model.h5           # Keras model (optional)
+├── models/ # Trained models
+│ ├── saher_model.pkl # Scikit-learn model
+│ └── saher_model.h5 # Keras model (optional)
 │
 ├── scalers/
-│   └── scaler.pkl               # MinMaxScaler used during training
+│ └── scaler.pkl # MinMaxScaler used during training
 │
 ├── data/
-│   └── building_health.csv      # Cleaned dataset
+│ └── building_health.csv # Cleaned dataset
 │
 ├── notebooks/
-│   └── Saher_Training.ipynb     # Jupyter notebook for training & analysis
+│ └── Saher_Training.ipynb # Jupyter notebook for training & analysis
 │
-└── README.md                    # Documentation
+└── README.md # Documentation
 
 ## ⚙️ Setup & Run Locally
 
