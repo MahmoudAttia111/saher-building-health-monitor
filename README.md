@@ -130,4 +130,11 @@ tensorflow
 
 Confusion Matrix from Jupyter notebook
 
+## 📸 Screenshots
+
+<p align="center">
+  <img src="images/Screenshot_2025-09-29_213628.png" alt="Home Screenshot" width="30%" />
+  <img src="images/Screenshot_2025-09-29_213644.png" alt="Prediction Screenshot" width="30%" />
+  <img src="images/image.png" alt="Streamlit Deployment" width="30%" />
+</p>
  
