@@ -93,36 +93,36 @@ for col in data.select_dtypes(include="float64").columns:
   data[col].fillna(data[col].median(), inplace=True)
 data.info()
 
-# data.hist(figsize=(20,15))
+data.hist(figsize=(20,15))
 
-# sns.heatmap(data.corr(numeric_only=True), annot=True)
+sns.heatmap(data.corr(numeric_only=True), annot=True)
 
-# data
+data
 
-# data["total_accel"] = np.sqrt(data["Accel_X (m/s^2)"]**2 + data["Accel_Y (m/s^2)"]**2 + data["Accel_Z (m/s^2)"]**2)
-# data.head()
+data["total_accel"] = np.sqrt(data["Accel_X (m/s^2)"]**2 + data["Accel_Y (m/s^2)"]**2 + data["Accel_Z (m/s^2)"]**2)
+data.head()
 
-# px.bar(data.groupby("Condition Label").size().reset_index(), x="Condition Label", y=0, title="Condition Label", labels={"0":"Count"}).show()
+px.bar(data.groupby("Condition Label").size().reset_index(), x="Condition Label", y=0, title="Condition Label", labels={"0":"Count"}).show()
 
-# for i in range(1, len(data.columns) - 1):
-#   px.box(data, x=data.columns[i], title=data.columns[i]).show()
+for i in range(1, len(data.columns) - 1):
+  px.box(data, x=data.columns[i], title=data.columns[i]).show()
 
-# for i in range(1, len(data.columns) - 1):
-#   px.histogram(data, x=data.columns[i], title=data.columns[i]).show()
+for i in range(1, len(data.columns) - 1):
+  px.histogram(data, x=data.columns[i], title=data.columns[i]).show()
 
-# px.scatter(data_frame=data, x="Accel_X (m/s^2)", y="Strain (με)", color="Condition Label")
+px.scatter(data_frame=data, x="Accel_X (m/s^2)", y="Strain (με)", color="Condition Label")
 
-# px.scatter_3d(data_frame=data, x="Accel_X (m/s^2)", y="Accel_Y (m/s^2)", z="Accel_Z (m/s^2)", color="Condition Label")
+px.scatter_3d(data_frame=data, x="Accel_X (m/s^2)", y="Accel_Y (m/s^2)", z="Accel_Z (m/s^2)", color="Condition Label")
 
 px.scatter_3d(data_frame=data, x="Accel_X (m/s^2)", y="Strain (με)", z="Temp (°C)", color="Condition Label")
 
 accel_data = data[data.columns[1:4]]
 accel_data
 
-# data.drop(columns=data.columns[1:4], inplace=True)
-# data
+data.drop(columns=data.columns[1:4], inplace=True)
+data
 
-# data["Condition Label"].value_counts()
+data["Condition Label"].value_counts()
 
 zero_condition_data = data.loc[data['Condition Label'] == 0].sample(n=450, random_state=42)
 one_condition_data = data.loc[data['Condition Label'] == 1]
@@ -139,52 +139,52 @@ under_sample_data.head()
 
 under_sample_data["Condition Label"].value_counts()
 
-# X = data.drop(columns=["Condition Label", "Timestamp"])
-# y = data["Condition Label"]
-# adasyn = ADASYN(sampling_strategy='minority', random_state=42)
-# X_resampled, y_resampled = adasyn.fit_resample(X, y)
+X = data.drop(columns=["Condition Label", "Timestamp"])
+y = data["Condition Label"]
+adasyn = ADASYN(sampling_strategy='minority', random_state=42)
+X_resampled, y_resampled = adasyn.fit_resample(X, y)
 
-# over_sample_data = pd.concat([X_resampled, y_resampled], axis=1)
+over_sample_data = pd.concat([X_resampled, y_resampled], axis=1)
 
-# X = over_sample_data.drop(columns=["Condition Label"])
-# y = over_sample_data["Condition Label"]
-# adasyn = ADASYN(sampling_strategy='minority', random_state=42)
-# X_resampled, y_resampled = adasyn.fit_resample(X, y)
+X = over_sample_data.drop(columns=["Condition Label"])
+y = over_sample_data["Condition Label"]
+adasyn = ADASYN(sampling_strategy='minority', random_state=42)
+X_resampled, y_resampled = adasyn.fit_resample(X, y)
 
-# over_sample_data = pd.concat([X_resampled, y_resampled], axis=1)
+over_sample_data = pd.concat([X_resampled, y_resampled], axis=1)
 
 
-# print("Oversampled data shape:", over_sample_data.shape)
-# over_sample_data.head()
+print("Oversampled data shape:", over_sample_data.shape)
+over_sample_data.head()
 
-# over_sample_data["Condition Label"].value_counts()
+over_sample_data["Condition Label"].value_counts()
 
-# over_sample_data.info()
+over_sample_data.info()
 
-# over_sample_data.hist(figsize=(20,15))
+over_sample_data.hist(figsize=(20,15))
 
-# data.drop(columns=["Timestamp"], inplace=True)
+data.drop(columns=["Timestamp"], inplace=True)
 
 under_sample_data.drop(columns=["Timestamp"], inplace=True)
 
-# data.tail()
+data.tail()
 
-# data.hist(figsize=(20,15))
+data.hist(figsize=(20,15))
 
-# x = data.drop(columns=["Condition Label"])
-# y = data["Condition Label"]
-# x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42, stratify=y)
-# x_test, x_val, y_test, y_val = train_test_split(x_test, y_test, test_size=0.5, random_state=42, stratify=y_test)
-# scaler = MinMaxScaler()
-# x_train = scaler.fit_transform(x_train)
-# x_test = scaler.transform(x_test)
-# x_val = scaler.transform(x_val)
+x = data.drop(columns=["Condition Label"])
+y = data["Condition Label"]
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42, stratify=y)
+x_test, x_val, y_test, y_val = train_test_split(x_test, y_test, test_size=0.5, random_state=42, stratify=y_test)
+scaler = MinMaxScaler()
+x_train = scaler.fit_transform(x_train)
+x_test = scaler.transform(x_test)
+x_val = scaler.transform(x_val)
 
 """dataTotal.hist(figsize=(20,15))"""
 
-# data.head()
+data.head()
 
-# sns.heatmap(data.corr(numeric_only=True), annot=True)
+sns.heatmap(data.corr(numeric_only=True), annot=True)
 
 """to download the clean data run this code"""
 
@@ -197,240 +197,240 @@ under_sample_data.drop(columns=["Timestamp"], inplace=True)
 ## 1-Modeling with normal data
 """
 
-# LR = LogisticRegression(class_weight="balanced")
-# LR.fit(x_train, y_train)
-# y_pred = LR.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+LR = LogisticRegression(class_weight="balanced")
+LR.fit(x_train, y_train)
+y_pred = LR.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# DT = DecisionTreeClassifier(class_weight="balanced",max_depth=3)
-# DT.fit(x_train, y_train)
-# y_pred = DT.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+DT = DecisionTreeClassifier(class_weight="balanced",max_depth=3)
+DT.fit(x_train, y_train)
+y_pred = DT.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# max_depth = [None,1,2,3,4,5,6,7,8,9,10]
-# features = [1,2,3,4,5]
+max_depth = [None,1,2,3,4,5,6,7,8,9,10]
+features = [1,2,3,4,5]
 
-# best_acc = 0
-# best_params = {}
-# best_report = None
-# best_matrix = None
+best_acc = 0
+best_params = {}
+best_report = None
+best_matrix = None
 
-# for i in max_depth:
-#     for j in features:
-#         DT = DecisionTreeClassifier(class_weight="balanced",
-#                                     max_depth=i,
-#                                     max_features=j,
-#                                     random_state=42)
-#         DT.fit(x_train, y_train)
-#         y_pred = DT.predict(x_val)
+for i in max_depth:
+    for j in features:
+        DT = DecisionTreeClassifier(class_weight="balanced",
+                                    max_depth=i,
+                                    max_features=j,
+                                    random_state=42)
+        DT.fit(x_train, y_train)
+        y_pred = DT.predict(x_val)
 
-#         acc = accuracy_score(y_val, y_pred)
+        acc = accuracy_score(y_val, y_pred)
 
-#         if acc > best_acc:
-#             best_acc = acc
-#             best_params = {"max_depth": i, "max_features": j}
-#             best_report = classification_report(y_val, y_pred)
-#             best_matrix = confusion_matrix(y_val, y_pred)
+        if acc > best_acc:
+            best_acc = acc
+            best_params = {"max_depth": i, "max_features": j}
+            best_report = classification_report(y_val, y_pred)
+            best_matrix = confusion_matrix(y_val, y_pred)
 
-# print("Parameters:", best_params)
-# print("Accuracy:", best_acc)
-# print("Confusion Matrix:\n", best_matrix)
-# print("Classification Report:\n", best_report)
+print("Parameters:", best_params)
+print("Accuracy:", best_acc)
+print("Confusion Matrix:\n", best_matrix)
+print("Classification Report:\n", best_report)
 
-# RF = RandomForestClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
-# RF.fit(x_train,y_train)
-# y_pred = RF.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+RF = RandomForestClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
+RF.fit(x_train,y_train)
+y_pred = RF.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# knn = KNeighborsClassifier(n_neighbors=9)
-# knn.fit(x_train, y_train)
-# y_pred = knn.predict(x_val)
-# knn.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+knn = KNeighborsClassifier(n_neighbors=9)
+knn.fit(x_train, y_train)
+y_pred = knn.predict(x_val)
+knn.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# svm = SVC(class_weight="balanced", C=1)
-# svm.fit(x_train, y_train)
-# y_pred = svm.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+svm = SVC(class_weight="balanced", C=1)
+svm.fit(x_train, y_train)
+y_pred = svm.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# XG = XGBClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
-# XG.fit(x_train, y_train)
-# y_pred = XG.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+XG = XGBClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
+XG.fit(x_train, y_train)
+y_pred = XG.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# naive_bayes = GaussianNB( )
-# naive_bayes.fit(x_train, y_train)
-# y_pred = naive_bayes.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+naive_bayes = GaussianNB( )
+naive_bayes.fit(x_train, y_train)
+y_pred = naive_bayes.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# callbacks = [EarlyStopping(monitor='val_loss', patience=15,restore_best_weights=True)]
-# model = Sequential()
-# model.add(Dense(512, activation='relu', input_shape=(x_train.shape[1],)))
-# model.add(Dense(256, activation='relu'))
-# model.add(Dense(64, activation='relu'))
-# model.add(Dense(32, activation='relu'))
-# model.add(Dense(3, activation='softmax'))
-# model.compile(optimizer='adamW', loss='categorical_crossentropy', metrics=['accuracy'])
-# history = model.fit(x_train, to_categorical(y_train), epochs=500, batch_size=32, validation_data=(x_val, to_categorical(y_val)),callbacks=callbacks)
+callbacks = [EarlyStopping(monitor='val_loss', patience=15,restore_best_weights=True)]
+model = Sequential()
+model.add(Dense(512, activation='relu', input_shape=(x_train.shape[1],)))
+model.add(Dense(256, activation='relu'))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(3, activation='softmax'))
+model.compile(optimizer='adamW', loss='categorical_crossentropy', metrics=['accuracy'])
+history = model.fit(x_train, to_categorical(y_train), epochs=500, batch_size=32, validation_data=(x_val, to_categorical(y_val)),callbacks=callbacks)
 
-# y_pred = model.predict(x_val)
-# y_pred = np.argmax(y_pred, axis=1)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+y_pred = model.predict(x_val)
+y_pred = np.argmax(y_pred, axis=1)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# plt.plot(history.history['loss'])
-# plt.plot(history.history['val_loss'])
-# plt.title('Model loss')
-# plt.ylabel('Loss')
-# plt.xlabel('Epoch')
-# plt.legend(['Train', 'Validation'], loc='upper right')
-# plt.show()
-# plt.plot(history.history['accuracy'])
-# plt.plot(history.history['val_accuracy'])
-# plt.title('Model accuracy')
-# plt.ylabel('Accuracy')
-# plt.xlabel('Epoch')
-# plt.legend(['Train', 'Validation'], loc='lower right')
-# plt.show()
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Validation'], loc='upper right')
+plt.show()
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Model accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Validation'], loc='lower right')
+plt.show()
 
 """## 2-Modeling with over sampled data"""
 
-# x = over_sample_data.drop(columns=["Condition Label"])
-# y = over_sample_data["Condition Label"]
-# x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42,stratify=y)
-# x_test,x_val,y_test,y_val = train_test_split(x_test,y_test,test_size=0.5,random_state=42,stratify=y_test)
+x = over_sample_data.drop(columns=["Condition Label"])
+y = over_sample_data["Condition Label"]
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42,stratify=y)
+x_test,x_val,y_test,y_val = train_test_split(x_test,y_test,test_size=0.5,random_state=42,stratify=y_test)
 
-# x_train.head()
+x_train.head()
 
-# LR = LogisticRegression( )
-# LR.fit(x_train, y_train)
-# y_pred = LR.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+LR = LogisticRegression( )
+LR.fit(x_train, y_train)
+y_pred = LR.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# DT = DecisionTreeClassifier(class_weight="balanced",max_depth=3)
-# DT.fit(x_train, y_train)
-# y_pred = DT.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+DT = DecisionTreeClassifier(class_weight="balanced",max_depth=3)
+DT.fit(x_train, y_train)
+y_pred = DT.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# max_depth = [None,1,2,3,4,5,6,7,8,9,10]
-# features = [1,2,3,4,5]
+max_depth = [None,1,2,3,4,5,6,7,8,9,10]
+features = [1,2,3,4,5]
 
-# best_acc = 0
-# best_params = {}
-# best_report = None
-# best_matrix = None
+best_acc = 0
+best_params = {}
+best_report = None
+best_matrix = None
 
-# for i in max_depth:
-#     for j in features:
-#         DT = DecisionTreeClassifier(class_weight="balanced",
-#                                     max_depth=i,
-#                                     max_features=j,
-#                                     random_state=42)
-#         DT.fit(x_train, y_train)
-#         y_pred = DT.predict(x_val)
+for i in max_depth:
+    for j in features:
+        DT = DecisionTreeClassifier(class_weight="balanced",
+                                    max_depth=i,
+                                    max_features=j,
+                                    random_state=42)
+        DT.fit(x_train, y_train)
+        y_pred = DT.predict(x_val)
 
-#         acc = accuracy_score(y_val, y_pred)
+        acc = accuracy_score(y_val, y_pred)
 
-#         if acc > best_acc:
-#             best_acc = acc
-#             best_params = {"max_depth": i, "max_features": j}
-#             best_report = classification_report(y_val, y_pred)
-#             best_matrix = confusion_matrix(y_val, y_pred)
+        if acc > best_acc:
+            best_acc = acc
+            best_params = {"max_depth": i, "max_features": j}
+            best_report = classification_report(y_val, y_pred)
+            best_matrix = confusion_matrix(y_val, y_pred)
 
-# print("Parameters:", best_params)
-# print("Accuracy:", best_acc)
-# print("Confusion Matrix:\n", best_matrix)
-# print("Classification Report:\n", best_report)
+print("Parameters:", best_params)
+print("Accuracy:", best_acc)
+print("Confusion Matrix:\n", best_matrix)
+print("Classification Report:\n", best_report)
 
-# RF = RandomForestClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
-# RF.fit(x_train,y_train)
-# y_pred = RF.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+RF = RandomForestClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
+RF.fit(x_train,y_train)
+y_pred = RF.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# knn = KNeighborsClassifier(n_neighbors=9)
-# knn.fit(x_train, y_train)
-# y_pred = knn.predict(x_val)
-# knn.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+knn = KNeighborsClassifier(n_neighbors=9)
+knn.fit(x_train, y_train)
+y_pred = knn.predict(x_val)
+knn.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# svm = SVC(class_weight="balanced", C=1)
-# svm.fit(x_train, y_train)
-# y_pred = svm.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+svm = SVC(class_weight="balanced", C=1)
+svm.fit(x_train, y_train)
+y_pred = svm.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# XG = XGBClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
-# XG.fit(x_train, y_train)
-# y_pred = XG.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+XG = XGBClassifier(class_weight="balanced", n_estimators=100, max_depth=3)
+XG.fit(x_train, y_train)
+y_pred = XG.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# naive_bayes = GaussianNB()
-# naive_bayes.fit(x_train, y_train)
-# y_pred = naive_bayes.predict(x_val)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+naive_bayes = GaussianNB()
+naive_bayes.fit(x_train, y_train)
+y_pred = naive_bayes.predict(x_val)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# callbacks = [EarlyStopping(monitor='val_loss', patience=15,restore_best_weights=True)]
-# model = Sequential()
-# model.add(Dense(1024, activation='relu', input_shape=(x_train.shape[1],)))
-# model.add(Dense(512, activation='relu'))
-# model.add(Dense(256, activation='relu'))
-# model.add(Dense(128, activation='relu'))
-# model.add(Dense(64, activation='relu'))
-# model.add(Dense(32, activation='relu'))
-# model.add(Dense(3, activation='softmax'))
-# model.compile(optimizer='adamW', loss='categorical_crossentropy', metrics=['accuracy'])
-# history = model.fit(x_train, to_categorical(y_train), epochs=500, batch_size=32, validation_data=(x_val, to_categorical(y_val)),callbacks=callbacks)
+callbacks = [EarlyStopping(monitor='val_loss', patience=15,restore_best_weights=True)]
+model = Sequential()
+model.add(Dense(1024, activation='relu', input_shape=(x_train.shape[1],)))
+model.add(Dense(512, activation='relu'))
+model.add(Dense(256, activation='relu'))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(3, activation='softmax'))
+model.compile(optimizer='adamW', loss='categorical_crossentropy', metrics=['accuracy'])
+history = model.fit(x_train, to_categorical(y_train), epochs=500, batch_size=32, validation_data=(x_val, to_categorical(y_val)),callbacks=callbacks)
 
-# y_pred = model.predict(x_val)
-# y_pred = np.argmax(y_pred, axis=1)
-# print(accuracy_score(y_val, y_pred))
-# print(confusion_matrix(y_val, y_pred))
-# print(classification_report(y_val, y_pred))
+y_pred = model.predict(x_val)
+y_pred = np.argmax(y_pred, axis=1)
+print(accuracy_score(y_val, y_pred))
+print(confusion_matrix(y_val, y_pred))
+print(classification_report(y_val, y_pred))
 
-# model.save("saher1.h5")
+model.save("saher1.h5")
 
-# plt.plot(history.history['loss'])
-# plt.plot(history.history['val_loss'])
-# plt.title('Model loss')
-# plt.ylabel('Loss')
-# plt.xlabel('Epoch')
-# plt.legend(['Train', 'Validation'], loc='upper right')
-# plt.show()
-# plt.plot(history.history['accuracy'])
-# plt.plot(history.history['val_accuracy'])
-# plt.title('Model accuracy')
-# plt.ylabel('Accuracy')
-# plt.xlabel('Epoch')
-# plt.legend(['Train', 'Validation'], loc='lower right')
-# plt.show()
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Validation'], loc='upper right')
+plt.show()
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Model accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Validation'], loc='lower right')
+plt.show()
 
 """## 3-Modeling with under sampled data"""
 
@@ -563,7 +563,3 @@ plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Validation'], loc='lower right')
 plt.show()
-
-under_sample_data.head()
-
-data.head()
