@@ -30,6 +30,8 @@ saher-building-health-monitor/
 ├── saher_app.py # Streamlit application
 ├── requirements.txt # Project dependencies
 │
+├── images/
+|
 ├── models/ # Trained models
 │ ├── saher_model.pkl # Scikit-learn model
 │ └── saher_model.h5 # Keras model (optional)
