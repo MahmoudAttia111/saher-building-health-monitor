@@ -1,4 +1,8 @@
 dash
+seaborn
+plotly
+pandas
+datetime
 streamlit
 numpy
 scikit-learn
